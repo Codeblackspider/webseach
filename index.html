@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook Groups Search</title>
+  <!-- Include jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Custom CSS for styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .search-form {
+      margin-bottom: 20px;
+    }
+    .search-results {
+      margin-top: 20px;
+    }
+    .result-item {
+      margin-bottom: 10px;
+    }
+    .result-title {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Facebook Groups Search</h1>
+
+  <!-- Search Form -->
+  <form id="searchForm" class="search-form">
+    <label for="category">Category:</label>
+    <select id="category">
+      <option value="Educational Institutions">Educational Institutions</option>
+      <option value="Healthcare Providers">Healthcare Providers</option>
+      <option value="Real Estate Agents">Real Estate Agents</option>
+      <option value="Event Planners">Event Planners</option>
+      <option value="Restaurants and Cafes">Restaurants and Cafes</option>
+      <option value="Retail Stores">Retail Stores</option>
+      <option value="Tech Companies">Tech Companies</option>
+      <option value="Travel Agencies">Travel Agencies</option>
+      <option value="Fashion Designers">Fashion Designers</option>
+      <option value="Photographers">Photographers</option>
+      <option value="Entrepreneurs">Entrepreneurs</option>
+      <option value="Small Business Owners">Small Business Owners</option>
+      <option value="Startups">Startups</option>
+      <option value="E-commerce Businesses">E-commerce Businesses</option>
+      <option value="Freelancers">Freelancers</option>
+      <option value="Artists">Artists</option>
+      <option value="Authors">Authors</option>
+      <option value="Bloggers">Bloggers</option>
+      <option value="Influencers">Influencers</option>
+      <option value="Nonprofit Organizations">Nonprofit Organizations</option>
+    </select>
+
+    <label for="location">Location:</label>
+    <select id="location">
+      <option value="Kerala">Kerala</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+    </select>
+
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Search Results -->
+  <div id="searchResults" class="search-results">
+    <!-- Results will be displayed here dynamically -->
+  </div>
+
+  <!-- Script for Google Custom Search -->
+  <script async src="https://cse.google.com/cse.js?cx=007c0d4d247a1412f"></script>
+  <script>
+    // Replace '007c0d4d247a1412f' with your actual Custom Search Engine ID (CX)
+    const cx = '007c0d4d247a1412f';
+
+    // Handle form submission
+    $('#searchForm').submit(function(event) {
+      event.preventDefault();
+      
+      // Get selected values from form
+      const category = $('#category').val();
+      const location = $('#location').val();
+      
+      // Construct search query
+      const query = `"site:facebook.com/groups ${category} ${location}"`;
+      
+      // Execute Google Custom Search
+      const search = google.search.cse.element.getElement('searchResults');
+      search.execute(query);
+    });
+  </script>
+</body>
+</html>
